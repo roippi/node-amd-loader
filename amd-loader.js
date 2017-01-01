@@ -68,7 +68,9 @@ global.define = function (id, injects, factory) {
             return require(fileName);
     }.bind(this, mod);
 
-    injects.unshift("require", "exports", "module");
+    if (injects.length === 0) {
+        injects.unshift("require", "exports", "module");
+    }
     
     id = mod.id;
     if (typeof factory !== "function") {
